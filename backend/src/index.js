@@ -4,6 +4,7 @@ import messageRoutes from './routes/message.route.js';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import { connectDB } from './lib/db.js';
+import cors from 'cors';
 
 dotenv.config();
 const app = express();
@@ -11,11 +12,12 @@ const PORT = process.env.PORT;
 
 app.use(express.json()); //this allowes to extract json data out of request body in controller.ex:const {password,..}=req.body
 app.use(cookieParser());
+app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
 
 app.use('/api/auth', authRoutes);
-app.use('/api/message',messageRoutes)
+app.use('/api/message', messageRoutes);
 
 app.listen(PORT, () => {
-    console.log('server runnig on 5001');
-    connectDB();
+  console.log('server runnig on 5001');
+  connectDB();
 });
