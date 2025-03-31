@@ -10,7 +10,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT;
 
-app.use(express.json()); //this allowes to extract json data out of request body in controller.ex:const {password,..}=req.body
+app.use(express.json({ limit: '5mb' })); //this allowes to extract json data out of request body in controller.ex:const {password,..}=req.body
 app.use(cookieParser());
 app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
 
