@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useAuthStore } from '../store/useAuthStore';
+import { useAuthStore } from '../store/useAuthStore.js';
 import { Camera, Mail, User } from 'lucide-react';
 import imageCompression from 'browser-image-compression';
 

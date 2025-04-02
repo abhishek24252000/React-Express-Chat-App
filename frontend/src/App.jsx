@@ -7,19 +7,19 @@ import SignUpPage from './pages/SignUpPage';
 import LoginPage from './pages/LoginPage';
 import SettingsPage from './pages/SettingsPage';
 import ProfilePage from './pages/ProfilePage';
-import { axiosInstance } from './lib/axios.js';
 import { useAuthStore } from './store/useAuthStore.js';
+import { useThemeStore } from './store/useThemeStore.js';
 import { Loader } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
 
 const App = () => {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
+
+  const { theme, setTheme } = useThemeStore();
+
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
-  console.log('---------');
-  console.log(authUser);
-  console.log(isCheckingAuth);
 
   if (isCheckingAuth && !authUser) {
     return (
@@ -29,7 +29,7 @@ const App = () => {
     );
   }
   return (
-    <div>
+    <div data-theme={theme}>
       <Navbar />
 
       <Routes>
@@ -52,7 +52,7 @@ const App = () => {
         />
       </Routes>
 
-      <Toaster/>
+      <Toaster />
     </div>
   );
 };
